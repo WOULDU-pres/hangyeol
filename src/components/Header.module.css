@@ -1,0 +1,65 @@
+.header {
+  background-color: transparent;
+  padding: 14px 14px 0 14px;
+  box-shadow: none;
+  margin-bottom: 20px;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 42px;
+}
+
+.headerLeft {
+  width: 24px;
+}
+
+.menuIcon {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.menuIcon span {
+  width: 18px;
+  height: 2px;
+  background-color: #504949;
+  border-radius: 1px;
+}
+
+.headerTitle {
+  font-family: 'Sulphur Point', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #504949;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.headerRight {
+  width: 42px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profileImage {
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
+  overflow: hidden;
+}
+
+.profilePlaceholder {
+  width: 100%;
+  height: 100%;
+  background-color: #f6eded;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #504949;
+  font-size: 16px;
+} 
