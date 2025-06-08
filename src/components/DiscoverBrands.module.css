@@ -1,0 +1,154 @@
+.section {
+  margin-bottom: 20px;
+  padding: 0 14px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #504949;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
+  object-fit: cover;
+}
+
+.brandsContainer {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.brandsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.brandCard {
+  flex-shrink: 0;
+  width: 180px;
+  background: white;
+  border: 1px solid #f3f3f3;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.brandCard:hover {
+  transform: scale(1.02);
+}
+
+.brandImage {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  border-radius: 12px;
+}
+
+.brandName {
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #504949;
+  margin: 0 0 8px 0;
+  letter-spacing: 1px;
+}
+
+.brandDescription {
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: #aa9e9e;
+  margin: 0 0 12px 0;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stars {
+  font-size: 12px;
+  color: #ffd700;
+}
+
+.ratingText {
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #aa9e9e;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 414px) {
+  .section {
+    padding: 0 16px;
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .brandsGrid {
+    gap: 12px;
+  }
+
+  .brandCard {
+    width: 350px;
+  }
+
+  .brandImage {
+    height: 300px;
+    border-radius: 8px;
+  }
+
+  .brandInfo {
+    padding: 12px 16px;
+    border-radius: 8px;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+  }
+
+  .brandName {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .rating {
+    font-size: 14px;
+  }
+
+  .reviewCount {
+    font-size: 12px;
+  }
+
+  .star {
+    font-size: 12px;
+  }
+} 

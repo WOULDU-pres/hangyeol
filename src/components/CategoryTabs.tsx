@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import styles from './CategoryTabs.module.css'
+import { Tabs } from 'antd'
 
 interface CategoryTabsProps {
   onCategoryChange: (category: string) => void
@@ -13,26 +12,36 @@ const categories = [
 ]
 
 export function CategoryTabs({ onCategoryChange }: CategoryTabsProps) {
-  const [activeCategory, setActiveCategory] = useState('all')
-
-  const handleCategoryClick = (categoryId: string) => {
-    setActiveCategory(categoryId)
-    onCategoryChange(categoryId)
+  const handleTabChange = (activeKey: string) => {
+    onCategoryChange(activeKey)
   }
 
+  const items = categories.map((category) => ({
+    key: category.id,
+    label: category.label,
+    children: null, // We don't need content, just the tab functionality
+  }))
+
   return (
-    <section className={styles.categoryTabs}>
-      <div className={styles.tabsContainer}>
-        {categories.map((category) => (
-          <button
-            key={category.id}
-            className={`${styles.tab} ${activeCategory === category.id ? styles.active : ''}`}
-            onClick={() => handleCategoryClick(category.id)}
-          >
-            {category.label}
-          </button>
-        ))}
-      </div>
-    </section>
+    <div style={{ padding: '0 14px', marginBottom: '30px' }}>
+      <Tabs
+        defaultActiveKey="all"
+        onChange={handleTabChange}
+        size="small"
+        tabPosition="top"
+        style={{
+          fontFamily: "'Sulphur Point', sans-serif",
+          fontSize: '12px',
+          fontWeight: 700,
+          letterSpacing: '1px',
+        }}
+        items={items}
+        tabBarStyle={{
+          marginBottom: 0,
+          borderBottom: 'none',
+        }}
+        tabBarGutter={35}
+      />
+    </div>
   )
 } 

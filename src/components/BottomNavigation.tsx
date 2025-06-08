@@ -1,14 +1,15 @@
 import { useState } from 'react'
-import styles from './BottomNavigation.module.css'
+import { Button, Flex } from 'antd'
+import { HomeOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons'
 
 interface BottomNavigationProps {
   onNavigate: (route: string) => void
 }
 
 const navItems = [
-  { id: 'home', icon: 'grid', label: 'Home' },
-  { id: 'search', icon: 'search', label: 'Search' },
-  { id: 'profile', icon: 'user', label: 'Profile' }
+  { id: 'home', icon: <HomeOutlined />, label: 'Home' },
+  { id: 'search', icon: <SearchOutlined />, label: 'Search' },
+  { id: 'profile', icon: <UserOutlined />, label: 'Profile' }
 ]
 
 export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
@@ -19,53 +20,42 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
     onNavigate(tabId)
   }
 
-  const renderIcon = (iconType: string, isActive: boolean) => {
-    const color = isActive ? '#2d2d2d' : '#2d2d2d'
-    
-    switch (iconType) {
-      case 'grid':
-        return (
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <rect x="1" y="1" width="8" height="8" rx="1" fill={color} stroke={color}/>
-            <rect x="13" y="1" width="8" height="8" rx="1" fill={color} stroke={color}/>
-            <rect x="13" y="13" width="8" height="8" rx="1" fill={color} stroke={color}/>
-            <rect x="1" y="13" width="8" height="8" rx="1" fill={color} stroke={color}/>
-          </svg>
-        )
-      case 'search':
-        return (
-          <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
-            <circle cx="9" cy="9" r="8" stroke={color} strokeWidth="1"/>
-            <path d="m17 17-4.35-4.35" stroke={color} strokeWidth="1"/>
-          </svg>
-        )
-      case 'user':
-        return (
-          <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
-            <circle cx="10" cy="7" r="4" stroke={color} strokeWidth="1"/>
-            <path d="M3 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2" stroke={color} strokeWidth="1"/>
-          </svg>
-        )
-      default:
-        return null
-    }
-  }
-
   return (
-    <nav className={styles.bottomNavigation}>
-      <div className={styles.navContainer}>
+    <div
+      style={{
+        position: 'fixed',
+        bottom: 0,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%',
+        maxWidth: '414px',
+        backgroundColor: '#ffffff',
+        borderTop: '1px solid #f0f0f0',
+        padding: '8px 0',
+        zIndex: 1000,
+      }}
+    >
+      <Flex justify="space-around" align="center">
         {navItems.map((item) => (
-          <button
+          <Button
             key={item.id}
-            className={`${styles.navItem} ${activeTab === item.id ? styles.active : ''}`}
+            type="text"
+            icon={item.icon}
             onClick={() => handleTabClick(item.id)}
-          >
-            <div className={styles.navIcon}>
-              {renderIcon(item.icon, activeTab === item.id)}
-            </div>
-          </button>
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '50px',
+              border: 'none',
+              boxShadow: 'none',
+              color: activeTab === item.id ? '#2d2d2d' : '#888888',
+              fontSize: '22px',
+            }}
+          />
         ))}
-      </div>
-    </nav>
+      </Flex>
+    </div>
   )
 } 

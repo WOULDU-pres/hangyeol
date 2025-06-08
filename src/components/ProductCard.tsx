@@ -1,5 +1,9 @@
+import { memo } from 'react'
+import { Card, Typography, Rate, Flex } from 'antd'
 import type { Product } from '../types/Product.ts'
-import styles from './ProductCard.module.css'
+
+const { Meta } = Card
+const { Text, Title } = Typography
 
 interface ProductCardProps {
   product: Product
@@ -7,7 +11,7 @@ interface ProductCardProps {
   onClick?: (product: Product) => void
 }
 
-export function ProductCard({ product, variant = 'grid', onClick }: ProductCardProps) {
+export const ProductCard = memo(function ProductCard({ product, variant = 'grid', onClick }: ProductCardProps) {
   const handleClick = () => {
     if (onClick) {
       onClick(product)
@@ -16,53 +20,145 @@ export function ProductCard({ product, variant = 'grid', onClick }: ProductCardP
 
   if (variant === 'list') {
     return (
-      <div className={`${styles.productCard} ${styles.listView}`} onClick={handleClick}>
-        <div className={styles.productImageContainer}>
+      <Card
+        hoverable
+        onClick={handleClick}
+        style={{
+          marginBottom: '12px',
+          borderRadius: '12px',
+        }}
+        bodyStyle={{ padding: '12px' }}
+      >
+        <Flex gap={12} align="flex-start">
+          <div style={{ 
+            width: '80px', 
+            height: '80px', 
+            borderRadius: '8px',
+            overflow: 'hidden',
+            backgroundColor: '#f6eded',
+            flexShrink: 0,
+          }}>
+            <img
+              src={product.image}
+              alt={product.name}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              onError={(e) => {
+                e.currentTarget.src = '/placeholder-product.jpg'
+              }}
+            />
+          </div>
+          
+          <Flex vertical flex={1} justify="space-between">
+            <div>
+              <Title 
+                level={5} 
+                style={{ 
+                  margin: 0, 
+                  marginBottom: '4px',
+                  fontFamily: "'Sulphur Point', sans-serif",
+                  fontSize: '14px',
+                }}
+              >
+                {product.name}
+              </Title>
+              <Text 
+                type="secondary" 
+                style={{ 
+                  fontSize: '12px',
+                  fontFamily: "'Sulphur Point', sans-serif",
+                }}
+              >
+                {product.category}
+              </Text>
+            </div>
+            
+            <Flex justify="space-between" align="center">
+              <Text 
+                strong 
+                style={{ 
+                  color: '#504949',
+                  fontFamily: "'Sulphur Point', sans-serif",
+                  fontSize: '14px',
+                }}
+              >
+                ${product.price.toFixed(2)}
+              </Text>
+              
+              {product.rating && (
+                <Rate disabled defaultValue={product.rating} style={{ fontSize: '12px' }} />
+              )}
+            </Flex>
+          </Flex>
+        </Flex>
+      </Card>
+    )
+  }
+
+  return (
+    <Card
+      hoverable
+      onClick={handleClick}
+      cover={
+        <div style={{ 
+          height: '208px', 
+          overflow: 'hidden',
+          backgroundColor: '#f6eded',
+        }}>
           <img
             src={product.image}
             alt={product.name}
-            className={styles.productImage}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             onError={(e) => {
               e.currentTarget.src = '/placeholder-product.jpg'
             }}
           />
         </div>
-        
-        <div className={styles.productContent}>
-          <div className={styles.productDetails}>
-            <h3 className={styles.productName}>{product.name}</h3>
-            <p className={styles.productCategory}>{product.category}</p>
-            <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
+      }
+      style={{
+        borderRadius: '12px',
+        overflow: 'hidden',
+      }}
+      bodyStyle={{ padding: '12px' }}
+    >
+      <Meta
+        title={
+          <Title 
+            level={5} 
+            style={{ 
+              margin: 0,
+              fontFamily: "'Sulphur Point', sans-serif",
+              fontSize: '14px',
+            }}
+          >
+            {product.name}
+          </Title>
+        }
+        description={
+          <div>
+            <Text 
+              type="secondary" 
+              style={{ 
+                fontSize: '12px',
+                fontFamily: "'Sulphur Point', sans-serif",
+                display: 'block',
+                marginBottom: '8px',
+              }}
+            >
+              {product.category}
+            </Text>
+            <Text 
+              strong 
+              style={{ 
+                color: '#504949',
+                fontFamily: "'Sulphur Point', sans-serif",
+                fontSize: '14px',
+              }}
+            >
+              ${product.price.toFixed(2)}
+            </Text>
           </div>
-          
-          {product.rating && (
-            <div className={styles.productRating}>
-              <span className={styles.ratingValue}>{product.rating}</span>
-            </div>
-          )}
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className={styles.productCard} onClick={handleClick}>
-      <div className={styles.productImageContainer}>
-        <img
-          src={product.image}
-          alt={product.name}
-          className={styles.productImage}
-          onError={(e) => {
-            e.currentTarget.src = '/placeholder-product.jpg'
-          }}
-        />
-      </div>
-      
-      <div className={styles.productContent}>
-        <h3 className={styles.productName}>{product.name}</h3>
-        <p className={styles.productCategory}>{product.category}</p>
-        <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
-      </div>
-    </div>
+        }
+      />
+    </Card>
   )
-} 
+}) 

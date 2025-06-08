@@ -1,0 +1,143 @@
+.section {
+  margin-bottom: 20px;
+  padding: 0 14px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #504949;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
+  object-fit: cover;
+}
+
+.orderCard {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #f3f3f3;
+}
+
+.orderImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.orderContent {
+  flex: 1;
+}
+
+.brandName {
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #aa9e9e;
+  margin: 0 0 4px 0;
+  letter-spacing: 1px;
+}
+
+.orderStatus {
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #504949;
+  margin: 0 0 4px 0;
+  letter-spacing: 1px;
+}
+
+.shippingMethod {
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #aa9e9e;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 0 20px;
+    margin-bottom: 32px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .orderCard {
+    gap: 20px;
+  }
+
+  .orderImage {
+    width: 240px;
+    height: 240px;
+    border-radius: 24px;
+  }
+
+  .brandName {
+    font-size: 20px;
+  }
+
+  .orderStatus {
+    font-size: 18px;
+  }
+
+  .shippingMethod {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 414px) {
+  .section {
+    padding: 0 16px;
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .orderCard {
+    gap: 16px;
+    flex-direction: column;
+  }
+
+  .orderImage {
+    width: 100%;
+    height: 200px;
+    border-radius: 24px;
+  }
+
+  .brandName {
+    font-size: 18px;
+  }
+
+  .orderStatus {
+    font-size: 16px;
+  }
+
+  .shippingMethod {
+    font-size: 14px;
+  }
+} 

@@ -1,53 +1,58 @@
 import { useState } from 'react'
-import styles from './SearchSection.module.css'
+import { Input, Button, Space } from 'antd'
+import { SearchOutlined, FilterOutlined } from '@ant-design/icons'
+
+const { Search } = Input
 
 interface SearchSectionProps {
   onSearch: (query: string) => void
+  placeholder?: string
+  showFilter?: boolean
 }
 
-export function SearchSection({ onSearch }: SearchSectionProps) {
+export function SearchSection({ onSearch, placeholder = 'Search', showFilter = true }: SearchSectionProps) {
   const [searchQuery, setSearchQuery] = useState('')
 
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
-      onSearch(searchQuery)
-    }
-  }
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSearch()
+  const handleSearch = (value?: string) => {
+    const query = value || searchQuery
+    if (query.trim()) {
+      onSearch(query)
     }
   }
 
   return (
-    <section className={styles.searchSection}>
-      <div className={styles.searchContainer}>
-        <div className={styles.searchInputWrapper}>
-          <div className={styles.searchIcon}>
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <circle cx="9" cy="9" r="8" stroke="#ded7d7" strokeWidth="1"/>
-              <path d="m17 17-4.35-4.35" stroke="#ded7d7" strokeWidth="1"/>
-            </svg>
-          </div>
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyPress={handleKeyPress}
-            className={styles.searchInput}
-          />
-        </div>
-        
-        <button className={styles.filterButton} onClick={handleSearch}>
-          <div className="filter-icon">
-            <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
-              <path d="M3 9h16M7 3h8M1 15h12" stroke="#504949" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-          </div>
-        </button>
-      </div>
-    </section>
+    <Space.Compact style={{ display: 'flex', gap: '12px', alignItems: 'center', width: '100%' }}>
+      <Search
+        placeholder={placeholder}
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        onSearch={handleSearch}
+        style={{ 
+          flex: 1,
+          fontFamily: "'Sulphur Point', sans-serif",
+          fontSize: '14px',
+          letterSpacing: '1px',
+        }}
+        size="large"
+      />
+      
+      {showFilter && (
+        <Button
+          type="default"
+          icon={<FilterOutlined />}
+          size="large"
+          onClick={() => handleSearch()}
+          style={{
+            width: '48px',
+            height: '48px',
+            backgroundColor: '#f6f4f4',
+            border: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        />
+      )}
+    </Space.Compact>
   )
 } 

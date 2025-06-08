@@ -1,0 +1,114 @@
+.section {
+  margin-bottom: 20px;
+  padding: 0 14px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #504949;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
+  object-fit: cover;
+}
+
+.itemsContainer {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.itemsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border: 1px solid #f3f3f3;
+}
+
+.item:hover {
+  transform: scale(1.02);
+}
+
+.itemImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profileImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  object-fit: cover;
+}
+
+.brandLabel {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2e415d;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+@media (max-width: 414px) {
+  .section {
+    padding: 0 16px;
+    margin-bottom: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .itemsGrid {
+    gap: 8px;
+  }
+
+  .itemCard {
+    width: 280px;
+    height: 280px;
+    border-radius: 24px;
+  }
+
+  .brandLabel {
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 16px;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+  }
+} 
