@@ -1,0 +1,90 @@
+/* Bottom Purchase Bar Component Styles */
+
+.container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 414px;
+  padding: 16px 20px;
+  z-index: 1000;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.priceSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.priceLabel {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.priceValue {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.buttonGroup {
+  gap: 8px;
+}
+
+.iconButton {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heartButton {
+  border: 2px solid;
+}
+
+.cartButton {
+  border: 2px solid;
+}
+
+.purchaseButton {
+  min-width: 120px;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: 12px 16px;
+  }
+  
+  .content {
+    gap: 8px;
+  }
+  
+  .iconButton {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .purchaseButton {
+    min-width: 100px;
+    height: 44px;
+    font-size: 14px;
+  }
+  
+  .priceValue {
+    font-size: 18px;
+  }
+} 

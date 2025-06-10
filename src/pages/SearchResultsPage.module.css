@@ -1,0 +1,81 @@
+/* SearchResultsPage Component Styles */
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.loadingContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.robotIcon {
+  color: #504949;
+  animation: pulse 2s infinite;
+}
+
+.searchContainer {
+  padding: 14px;
+}
+
+.searchWrapper {
+  gap: 12px;
+  align-items: center;
+}
+
+.searchInputWrapper {
+  flex: 1;
+}
+
+.aiButton {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(1.1); 
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .loadingContainer {
+    padding: 16px;
+  }
+  
+  .loadingContent {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .searchContainer {
+    padding: 12px;
+  }
+  
+  .searchWrapper {
+    gap: 8px;
+  }
+  
+  .aiButton {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+} 

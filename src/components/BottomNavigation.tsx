@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Button, Flex } from 'antd'
 import { HomeOutlined, SearchOutlined, UserOutlined } from '@ant-design/icons'
+import { theme } from '../styles/theme'
+import styles from './BottomNavigation.module.css'
 
 interface BottomNavigationProps {
   onNavigate: (route: string) => void
@@ -22,37 +24,21 @@ export function BottomNavigation({ onNavigate }: BottomNavigationProps) {
 
   return (
     <div
+      className={styles.container}
       style={{
-        position: 'fixed',
-        bottom: 0,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '100%',
-        maxWidth: '414px',
-        backgroundColor: '#ffffff',
-        borderTop: '1px solid #f0f0f0',
-        padding: '8px 0',
-        zIndex: 1000,
+        backgroundColor: theme.white,
       }}
     >
-      <Flex justify="space-around" align="center">
+      <Flex className={styles.navContainer}>
         {navItems.map((item) => (
           <Button
             key={item.id}
             type="text"
             icon={item.icon}
             onClick={() => handleTabClick(item.id)}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '50px',
-              border: 'none',
-              boxShadow: 'none',
-              color: activeTab === item.id ? '#2d2d2d' : '#888888',
-              fontSize: '22px',
-            }}
+            className={`${styles.navButton} ${
+              activeTab === item.id ? styles.navButtonActive : styles.navButtonInactive
+            }`}
           />
         ))}
       </Flex>

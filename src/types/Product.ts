@@ -2,7 +2,7 @@ export interface Product {
   id: string
   name: string
   category: string
-  price: number
+  price: string
   image: string
   rating?: number
   featured?: boolean
@@ -15,7 +15,7 @@ export interface AIRecommendedProduct {
   image: string
   tags: string[]
   description: string
-  price?: number
+  price?: string
   brand?: string
 }
 

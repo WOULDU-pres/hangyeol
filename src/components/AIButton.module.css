@@ -1,0 +1,36 @@
+/* AIButton Component Styles */
+
+.aiButton {
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.large {
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+}
+
+.small {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .large {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+  
+  .small {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+} 

@@ -1,0 +1,69 @@
+/* CustomerReviews Component Styles */
+
+.title {
+  color: #a6a6a3;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.scrollContainer {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.reviewCard {
+  min-width: 200px;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.rating {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.reviewText {
+  font-size: 11px;
+  color: #c3cdc0;
+  line-height: 1.4;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.author {
+  font-size: 10px;
+  color: #a6a6a3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .scrollContainer {
+    gap: 8px;
+  }
+  
+  .reviewCard {
+    min-width: 180px;
+    padding: 10px;
+  }
+  
+  .rating {
+    font-size: 11px;
+  }
+  
+  .reviewText {
+    font-size: 10px;
+  }
+  
+  .author {
+    font-size: 9px;
+  }
+} 

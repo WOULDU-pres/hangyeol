@@ -1,0 +1,98 @@
+/* SearchPage Component Styles */
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchSection {
+  padding: 20px;
+}
+
+.searchWrapper {
+  gap: 12px;
+  align-items: center;
+}
+
+.searchInputWrapper {
+  flex: 1;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.introText {
+  font-size: 18px;
+  color: #666666;
+  line-height: 1.4;
+  margin-top: 16px;
+}
+
+.userName {
+  font-weight: bold;
+  color: #504949;
+}
+
+.exampleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.exampleCard {
+  padding: 24px 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.exampleText {
+  font-size: 16px;
+  color: #333333;
+  font-weight: 500;
+  line-height: 1.5;
+  display: block;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .searchSection {
+    padding: 16px;
+  }
+  
+  .searchWrapper {
+    gap: 8px;
+  }
+  
+  .mainContent {
+    padding: 32px 16px;
+  }
+  
+  .introText {
+    font-size: 16px;
+  }
+  
+  .exampleContainer {
+    max-width: 280px;
+  }
+  
+  .exampleCard {
+    padding: 20px 16px;
+  }
+  
+  .exampleText {
+    font-size: 15px;
+  }
+} 

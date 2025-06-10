@@ -1,5 +1,7 @@
 import { Button, Space } from 'antd'
 import { HeartOutlined, TeamOutlined, TagOutlined } from '@ant-design/icons'
+import { theme } from '../styles/theme'
+import styles from './FilterButtons.module.css'
 import type { FilterType } from '../types/SearchTypes'
 
 interface FilterButtonsProps {
@@ -22,23 +24,20 @@ export function FilterButtons({ filters, onFilterClick }: FilterButtonsProps) {
   }
 
   return (
-    <div style={{ padding: '0 14px', marginBottom: '20px' }}>
-      <Space wrap>
+    <div className={styles.container}>
+      <Space wrap className={styles.buttonSpace}>
         {filters.map((filter) => (
           <Button
             key={filter.id}
             type={filter.active ? 'primary' : 'default'}
             icon={getIcon(filter.id)}
             onClick={() => onFilterClick(filter.id)}
+            className={`${styles.filterButton} ${
+              filter.active ? styles.filterButtonActive : styles.filterButtonInactive
+            }`}
             style={{
-              borderRadius: '20px',
-              height: '36px',
-              fontSize: '12px',
-              fontFamily: "'Sulphur Point', sans-serif",
-              fontWeight: 600,
-              border: filter.active ? 'none' : '1px solid #e6e6e6',
-              backgroundColor: filter.active ? '#504949' : '#ffffff',
-              color: filter.active ? '#ffffff' : '#504949',
+              backgroundColor: filter.active ? theme.primary : theme.white,
+              color: filter.active ? theme.white : theme.primary,
             }}
           >
             {filter.label}

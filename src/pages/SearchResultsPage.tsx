@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Button, Flex } from 'antd'
+import { Flex } from 'antd'
 import { SearchSection } from '../components/SearchSection'
 import { FilterButtons } from '../components/FilterButtons'
 import { SearchProductGrid } from '../components/SearchProductGrid'
@@ -8,17 +8,19 @@ import { RecentlyViewed } from '../components/RecentlyViewed'
 import { DiscoverBrands } from '../components/DiscoverBrands'
 import { BottomNavigation } from '../components/BottomNavigation'
 import { AIRecommendation } from '../components/AIRecommendation'
+import { AIButton } from '../components/AIButton'
 import { 
   filterButtons, 
   orderUpdates, 
   recentlyViewed, 
   discoverBrands 
 } from '../data/searchMockData'
+import { theme } from '../styles/theme'
+import styles from './SearchResultsPage.module.css'
 import type { FilterType } from '../types/SearchTypes'
 import type { AIRecommendedProduct } from '../types/Product'
 import { getAIRecommendation, getDefaultRecommendation } from '../services/agentforceApi'
 import { shouldShowDefaultRecommendation } from '../utils/devConfig'
-import { RiRobot3Line } from 'react-icons/ri'
 
 interface SearchResultsPageProps {
   searchQuery?: string
@@ -37,9 +39,9 @@ export function SearchResultsPage({ searchQuery = 'Search', onBack, onNavigate }
   const [aiError, setAiError] = useState<string | null>(null)
   const [showAiRecommendation, setShowAiRecommendation] = useState(shouldShowDefaultRecommendation())
 
-  // 개발 환경에서만 페이지 로드 시 기본 추천 상품 표시
-  // TODO: 실제 API 연결 시 이 useEffect 제거
+  // 페이지 로드 시 기본 추천 상품 표시 (로딩 없이)
   useEffect(() => {
+    // 개발 환경에서만 기본 추천 상품 표시
     if (shouldShowDefaultRecommendation()) {
       const defaultRecommendation = getDefaultRecommendation()
       if (defaultRecommendation.success && defaultRecommendation.data) {
@@ -48,6 +50,14 @@ export function SearchResultsPage({ searchQuery = 'Search', onBack, onNavigate }
       }
     }
   }, [])
+
+  // searchQuery가 있을 때 자동으로 검색 결과 표시
+  useEffect(() => {
+    if (searchQuery && searchQuery.trim()) {
+      setShowProductGrid(true)
+      fetchAIRecommendation(searchQuery)
+    }
+  }, [searchQuery])
 
   const handleFilterClick = (filterId: string) => {
     setActiveFilters(prev => 
@@ -112,11 +122,10 @@ export function SearchResultsPage({ searchQuery = 'Search', onBack, onNavigate }
 
   return (
     <div>
-
       {/* Search Bar + Filter Button in one line */}
-      <div style={{ padding: '14px 14px'}}>
-        <Flex gap={12} align="center">
-          <div style={{ flex: 1 }}>
+      <div className={styles.searchContainer}>
+        <Flex className={styles.searchWrapper}>
+          <div className={styles.searchInputWrapper}>
             <SearchSection 
               onSearch={handleSearch}
               placeholder={currentQuery}
@@ -124,24 +133,7 @@ export function SearchResultsPage({ searchQuery = 'Search', onBack, onNavigate }
             />
           </div>
           
-          <Button
-            type="default"
-            icon={<RiRobot3Line size={24} />}
-            size="large"
-            aria-label="AI search assistant"
-            style={{
-              width: '48px',
-              height: '48px',
-              backgroundColor: '#f6f4f4',
-              border: 'none',
-              borderRadius: '12px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '20px',
-              color: '#504949',
-            }}
-          />
+          <AIButton />
         </Flex>
       </div>
 
@@ -151,7 +143,7 @@ export function SearchResultsPage({ searchQuery = 'Search', onBack, onNavigate }
         onFilterClick={handleFilterClick}
       />
 
-      {/* AI 추천 상품 - 최상단에 표시 */}
+      {/* AI 추천 상품 섹션 */}
       {showAiRecommendation && (
         <AIRecommendation
           product={aiRecommendation}
@@ -162,22 +154,24 @@ export function SearchResultsPage({ searchQuery = 'Search', onBack, onNavigate }
         />
       )}
 
-      <main>
-        {/* Order Updates */}
-        <OrderUpdates orders={orderUpdates} />
-
-        {/* Recently Viewed */}
-        <RecentlyViewed items={recentlyViewed} />
-
-        {/* Discover Brands */}
-        <DiscoverBrands brands={discoverBrands} />
-      </main>
-
-      {/* Search Product Grid - 조건부 표시 */}
+      {/* 제품 그리드 */}
       {showProductGrid && (
-        <SearchProductGrid onProductClick={handleProductClick} />
+        <SearchProductGrid 
+          searchQuery={currentQuery}
+          onProductClick={handleProductClick} 
+        />
       )}
 
+      {/* Order Updates */}
+      <OrderUpdates orders={orderUpdates} />
+
+      {/* Recently Viewed */}
+      <RecentlyViewed items={recentlyViewed} />
+
+      {/* Discover Brands */}
+      <DiscoverBrands brands={discoverBrands} />
+
+      {/* Bottom Navigation */}
       <BottomNavigation onNavigate={handleNavigate} />
     </div>
   )

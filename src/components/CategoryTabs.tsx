@@ -1,4 +1,5 @@
 import { Tabs } from 'antd'
+import styles from './CategoryTabs.module.css'
 
 interface CategoryTabsProps {
   onCategoryChange: (category: string) => void
@@ -23,18 +24,13 @@ export function CategoryTabs({ onCategoryChange }: CategoryTabsProps) {
   }))
 
   return (
-    <div style={{ padding: '0 14px', marginBottom: '30px' }}>
+    <div className={styles.container}>
       <Tabs
         defaultActiveKey="all"
         onChange={handleTabChange}
         size="small"
         tabPosition="top"
-        style={{
-          fontFamily: "'Sulphur Point', sans-serif",
-          fontSize: '12px',
-          fontWeight: 700,
-          letterSpacing: '1px',
-        }}
+        className={styles.tabs}
         items={items}
         tabBarStyle={{
           marginBottom: 0,

@@ -1,14 +1,19 @@
 import { useState } from 'react'
 import { Layout } from 'antd'
 import { MainPage } from './pages/MainPage.tsx'
+import { SearchPage } from './pages/SearchPage.tsx'
 import { SearchResultsPage } from './pages/SearchResultsPage.tsx'
 import { ProductDetailPage } from './pages/ProductDetailPage.tsx'
 
 const { Content } = Layout
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'main' | 'search' | 'productDetail'>('main')
+  const [currentPage, setCurrentPage] = useState<'main' | 'searchInput' | 'search' | 'productDetail'>('main')
   const [searchQuery, setSearchQuery] = useState('')
+
+  const handleSearchInputClick = () => {
+    setCurrentPage('searchInput')
+  }
 
   const handleSearch = (query: string) => {
     setSearchQuery(query)
@@ -36,6 +41,10 @@ function App() {
     setCurrentPage('main')
   }
 
+  const handleBackFromSearchInput = () => {
+    setCurrentPage('main')
+  }
+
   return (
     <Layout 
       style={{
@@ -49,7 +58,15 @@ function App() {
         {currentPage === 'main' && (
           <MainPage 
             onSearch={handleSearch}
+            onSearchInputClick={handleSearchInputClick}
             onNavigate={handleNavigate}
+          />
+        )}
+
+        {currentPage === 'searchInput' && (
+          <SearchPage 
+            onBack={handleBackFromSearchInput}
+            onSearch={handleSearch}
           />
         )}
         

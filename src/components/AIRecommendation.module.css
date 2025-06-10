@@ -1,0 +1,174 @@
+/* AI Recommendation Component Styles */
+
+.container {
+  margin: 16px 14px;
+}
+
+.titleContainer {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.loadingCard {
+  border-radius: 16px;
+  min-height: 250px;
+}
+
+.loadingContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.loadingText {
+  margin-top: 20px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.errorCard {
+  border: 2px solid #ff4d4f;
+  border-radius: 16px;
+}
+
+.errorAlert {
+  border: none;
+}
+
+.clickMessage {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.clickMessageContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.clickMessageIcon {
+  font-size: 24px;
+}
+
+.clickMessageText {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.productCard {
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.productContent {
+  display: flex;
+  gap: 20px;
+}
+
+.productImage {
+  flex-shrink: 0;
+}
+
+.productImageImg {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.productInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.productName {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.productRating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ratingIcon {
+  color: #faad14;
+  font-size: 16px;
+}
+
+.ratingScore {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ratingCount {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.productPrice {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.productIngredients {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.ingredientsLabel {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ingredientsList {
+  font-size: 14px;
+}
+
+.smileIcon {
+  font-size: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .container {
+    margin: 12px 10px;
+  }
+  
+  .productContent {
+    gap: 16px;
+  }
+  
+  .productImageImg {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .clickMessage {
+    padding: 16px;
+  }
+} 

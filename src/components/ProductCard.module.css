@@ -1,0 +1,118 @@
+/* ProductCard Component Styles */
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cardBody {
+  padding: 12px;
+}
+
+.listCard {
+  margin-bottom: 12px;
+  border-radius: 12px;
+}
+
+.listContainer {
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.imageContainer {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.gridImageContainer {
+  height: 208px;
+  overflow: hidden;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.productContent {
+  flex: 1;
+  justify-content: space-between;
+}
+
+.productInfo {
+  margin-bottom: 8px;
+}
+
+.productTitle {
+  margin: 0;
+  margin-bottom: 4px;
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 14px;
+}
+
+.productCategory {
+  font-size: 12px;
+  font-family: 'Sulphur Point', sans-serif;
+}
+
+.gridProductCategory {
+  font-size: 12px;
+  font-family: 'Sulphur Point', sans-serif;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.priceRatingContainer {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productPrice {
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.gridProductPrice {
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.productRating {
+  font-size: 12px;
+}
+
+.metaTitle {
+  margin: 0;
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .imageContainer {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .gridImageContainer {
+    height: 180px;
+  }
+  
+  .productTitle {
+    font-size: 13px;
+  }
+  
+  .productCategory, .gridProductCategory {
+    font-size: 11px;
+  }
+  
+  .productPrice, .gridProductPrice {
+    font-size: 13px;
+  }
+} 

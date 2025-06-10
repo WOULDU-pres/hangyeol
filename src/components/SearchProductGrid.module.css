@@ -1,0 +1,98 @@
+/* SearchProductGrid Component Styles */
+
+.container {
+  padding: 20px 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.productCard {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #f3f3f3;
+}
+
+.productCardBody {
+  padding: 12px;
+}
+
+.imageContainer {
+  height: 140px;
+  overflow: hidden;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.productInfo {
+  text-align: center;
+}
+
+.productName {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+  font-family: 'Sulphur Point', sans-serif;
+  font-weight: bold;
+}
+
+.productBrand {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 8px;
+  font-family: 'Sulphur Point', sans-serif;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.productRating {
+  font-size: 12px;
+}
+
+.reviewCount {
+  font-size: 12px;
+  font-family: 'Sulphur Point', sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: 16px 12px;
+  }
+  
+  .grid {
+    gap: 10px;
+  }
+  
+  .imageContainer {
+    height: 120px;
+  }
+  
+  .productName {
+    font-size: 13px;
+  }
+  
+  .productBrand {
+    font-size: 11px;
+  }
+  
+  .productRating {
+    font-size: 11px;
+  }
+  
+  .reviewCount {
+    font-size: 11px;
+  }
+} 

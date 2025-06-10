@@ -1,0 +1,40 @@
+/* SearchSection Component Styles */
+
+.container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+}
+
+.searchInput {
+  flex: 1;
+  font-family: 'Sulphur Point', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.filterButton {
+  width: 48px;
+  height: 48px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .container {
+    gap: 8px;
+  }
+  
+  .filterButton {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .searchInput {
+    font-size: 13px;
+  }
+} 

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Input, Button, Space } from 'antd'
 import { FilterOutlined } from '@ant-design/icons'
+import { theme } from '../styles/theme'
+import styles from './SearchSection.module.css'
 
 const { Search } = Input
 
@@ -21,18 +23,13 @@ export function SearchSection({ onSearch, placeholder = 'Search', showFilter = t
   }
 
   return (
-    <Space.Compact style={{ display: 'flex', gap: '12px', alignItems: 'center', width: '100%' }}>
+    <Space.Compact className={styles.container}>
       <Search
         placeholder={placeholder}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         onSearch={handleSearch}
-        style={{ 
-          flex: 1,
-          fontFamily: "'Sulphur Point', sans-serif",
-          fontSize: '14px',
-          letterSpacing: '1px',
-        }}
+        className={styles.searchInput}
         size="large"
       />
       
@@ -42,14 +39,9 @@ export function SearchSection({ onSearch, placeholder = 'Search', showFilter = t
           icon={<FilterOutlined />}
           size="large"
           onClick={() => handleSearch()}
+          className={styles.filterButton}
           style={{
-            width: '48px',
-            height: '48px',
-            backgroundColor: '#f6f4f4',
-            border: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            backgroundColor: theme.background,
           }}
         />
       )}

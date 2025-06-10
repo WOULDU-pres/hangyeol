@@ -1,4 +1,6 @@
 import { Card, Rate, Typography } from 'antd'
+import { theme } from '../styles/theme'
+import styles from './SearchProductGrid.module.css'
 import forestImage1 from '../assets/forest_style_cosmetics (1).jpg'
 import forestImage2 from '../assets/forest_style_cosmetics (2).jpg'
 import forestImage3 from '../assets/forest_style_cosmetics (3).jpg'
@@ -51,73 +53,62 @@ const gridProducts = [
 ]
 
 interface SearchProductGridProps {
+  searchQuery?: string
   onProductClick?: (productId: string) => void
 }
 
-export function SearchProductGrid({ onProductClick }: SearchProductGridProps) {
+export function SearchProductGrid({ searchQuery, onProductClick }: SearchProductGridProps) {
+  // 검색어에 따른 상품 필터링
+  const filteredProducts = searchQuery ? 
+    gridProducts.filter(product => 
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.brand.toLowerCase().includes(searchQuery.toLowerCase())
+    ) : gridProducts
   return (
-    <div style={{ padding: '20px 14px' }}>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: '12px'
-      }}>
-        {gridProducts.map((product) => (
+    <div className={styles.container}>
+      <div className={styles.grid}>
+        {filteredProducts.map((product) => (
           <Card
             key={product.id}
             hoverable
             onClick={() => onProductClick?.(product.id)}
-            style={{
-              borderRadius: '12px',
-              overflow: 'hidden',
-              border: '1px solid #f3f3f3'
-            }}
+            className={styles.productCard}
             bodyStyle={{ padding: '12px' }}
             cover={
-              <div style={{ height: '140px', overflow: 'hidden' }}>
+              <div className={styles.imageContainer}>
                 <img
                   alt={product.name}
                   src={product.image}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover'
-                  }}
+                  className={styles.productImage}
                 />
               </div>
             }
           >
-            <div style={{ textAlign: 'center' }}>
-              <Text strong style={{
-                display: 'block',
-                fontSize: '14px',
-                color: '#504949',
-                marginBottom: '4px',
-                fontFamily: "'Sulphur Point', sans-serif"
-              }}>
+            <div className={styles.productInfo}>
+              <Text 
+                strong 
+                className={styles.productName}
+                style={{ color: theme.primary }}
+              >
                 {product.name}
               </Text>
-              <Text style={{
-                display: 'block',
-                fontSize: '12px',
-                color: '#aa9e9e',
-                marginBottom: '8px',
-                fontFamily: "'Sulphur Point', sans-serif"
-              }}>
+              <Text 
+                className={styles.productBrand}
+                style={{ color: theme.text.secondary }}
+              >
                 {product.brand}
               </Text>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '4px'
-              }}>
-                <Rate disabled defaultValue={product.rating} allowHalf style={{ fontSize: '12px' }} />
-                <Text style={{
-                  fontSize: '12px',
-                  color: '#aa9e9e',
-                  fontFamily: "'Sulphur Point', sans-serif"
-                }}>
+              <div className={styles.ratingContainer}>
+                <Rate 
+                  disabled 
+                  defaultValue={product.rating} 
+                  allowHalf 
+                  className={styles.productRating}
+                />
+                <Text 
+                  className={styles.reviewCount}
+                  style={{ color: theme.text.secondary }}
+                >
                   ({product.reviewCount.toLocaleString()})
                 </Text>
               </div>

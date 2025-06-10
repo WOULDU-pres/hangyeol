@@ -1,0 +1,60 @@
+/* Header Component Styles */
+
+.header {
+  background: transparent;
+  padding: 14px 14px 0 14px;
+  height: auto;
+  line-height: normal;
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 42px;
+}
+
+.menuButton {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  margin: 0;
+  font-family: 'Sulphur Point', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.avatar {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .header {
+    padding: 12px 12px 0 12px;
+    margin-bottom: 16px;
+  }
+  
+  .container {
+    height: 38px;
+  }
+  
+  .title {
+    font-size: 14px;
+  }
+  
+  .avatar {
+    font-size: 14px;
+  }
+} 

@@ -1,7 +1,6 @@
 export interface FilterType {
   id: string
   label: string
-  icon: string
   active?: boolean
 }
 
