@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Input, Button, Space } from 'antd'
-import { SearchOutlined, FilterOutlined } from '@ant-design/icons'
+import { FilterOutlined } from '@ant-design/icons'
 
 const { Search } = Input
 

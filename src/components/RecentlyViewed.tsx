@@ -1,5 +1,5 @@
-import type { RecentlyViewedItem } from '../types/SearchTypes'
 import styles from './RecentlyViewed.module.css'
+import type { RecentlyViewedItem } from '../types/SearchTypes'
 
 interface RecentlyViewedProps {
   items: RecentlyViewedItem[]
@@ -11,7 +11,7 @@ export function RecentlyViewed({ items }: RecentlyViewedProps) {
   return (
     <section className={styles.section}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Recently viewed</h2>
+        <h2 className={styles.title}>최근 본 상품</h2>
       </div>
       
       <div className={styles.itemsContainer}>

@@ -2,11 +2,12 @@ import { useState } from 'react'
 import { Layout } from 'antd'
 import { MainPage } from './pages/MainPage.tsx'
 import { SearchResultsPage } from './pages/SearchResultsPage.tsx'
+import { ProductDetailPage } from './pages/ProductDetailPage.tsx'
 
 const { Content } = Layout
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'main' | 'search'>('main')
+  const [currentPage, setCurrentPage] = useState<'main' | 'search' | 'productDetail'>('main')
   const [searchQuery, setSearchQuery] = useState('')
 
   const handleSearch = (query: string) => {
@@ -20,6 +21,8 @@ function App() {
     console.log('Navigate to:', route)
     if (route === 'home') {
       setCurrentPage('main')
+    } else if (route === 'productDetail') {
+      setCurrentPage('productDetail')
     }
     // TODO: Handle other navigation routes
   }
@@ -27,6 +30,10 @@ function App() {
   const handleBackToHome = () => {
     setCurrentPage('main')
     setSearchQuery('')
+  }
+
+  const handleBackFromDetail = () => {
+    setCurrentPage('main')
   }
 
   return (
@@ -50,6 +57,13 @@ function App() {
           <SearchResultsPage 
             searchQuery={searchQuery}
             onBack={handleBackToHome}
+            onNavigate={handleNavigate}
+          />
+        )}
+
+        {currentPage === 'productDetail' && (
+          <ProductDetailPage 
+            onBack={handleBackFromDetail}
           />
         )}
       </Content>
