@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Typography, Space, Flex } from 'antd'
-import { PageHeader } from '../components/PageHeader.tsx'
+import { Header } from '../components/Header.tsx'
 import { SearchSection } from '../components/SearchSection.tsx'
 import { AIButton } from '../components/AIButton.tsx'
 import { theme } from '../styles/theme'
@@ -25,10 +25,10 @@ export function SearchPage({ onBack, onSearch }: SearchPageProps) {
 
   return (
     <div className={styles.container} style={{ backgroundColor: '#FAFAFA' }}>
-      <PageHeader title="Search" onBack={onBack} />
+      <Header onBack={onBack} showAvatar={false} title="Search" />
 
-      {/* 검색 섹션 - MainPage와 동일한 형태 */}
-      <div className={styles.searchSection} style={{ backgroundColor: theme.white }}>
+      {/* 검색 섹션 - 글로벌 배경 사용 */}
+      <div className={styles.searchSection} style={{ backgroundColor: theme.background }}>
         <Flex className={styles.searchWrapper}>
           <div className={styles.searchInputWrapper}>
             <SearchSection 

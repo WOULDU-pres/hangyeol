@@ -1,0 +1,124 @@
+.container {
+  margin: 16px;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 2px solid #BBD8A3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.aiIcon {
+  font-size: 24px;
+}
+
+.title {
+  margin: 0 !important;
+  font-weight: 700;
+}
+
+.subtitle {
+  display: block;
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.analysisGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.analysisCard {
+  border-radius: 8px;
+}
+
+.iconContainer {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.itemTitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.itemValue {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.progressBar {
+  width: 100%;
+}
+
+.itemDescription {
+  font-size: 13px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.summary {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.summaryText {
+  font-size: 14px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .container {
+    margin: 12px;
+    padding: 16px;
+  }
+  
+  .header {
+    gap: 8px;
+  }
+  
+  .aiIcon {
+    font-size: 20px;
+  }
+  
+  .itemTitle {
+    font-size: 14px;
+  }
+  
+  .itemValue {
+    font-size: 15px;
+  }
+  
+  .itemDescription {
+    font-size: 12px;
+  }
+  
+  .summaryText {
+    font-size: 13px;
+  }
+} 

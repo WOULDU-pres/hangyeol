@@ -4,8 +4,8 @@ import styles from './SearchProductGrid.module.css'
 import forestImage1 from '../assets/forest_style_cosmetics (1).jpg'
 import forestImage2 from '../assets/forest_style_cosmetics (2).jpg'
 import forestImage3 from '../assets/forest_style_cosmetics (3).jpg'
-import pinkImage1 from '../assets/pink_style_cosmetics (1).jpg'
-import pinkImage2 from '../assets/pink_style_cosmetics (2).jpg'
+import springImage1 from '../assets/spring_style_cosmetics (1).jpg'
+import springImage2 from '../assets/spring_style_cosmetics.jpg'
 
 const { Text } = Typography
 
@@ -20,7 +20,7 @@ const gridProducts = [
   },
   {
     id: '2', 
-    image: pinkImage1,
+    image: springImage1,
     name: '로즈 블룸 케어',
     brand: '온화한 하루',
     rating: 4.4,
@@ -36,7 +36,7 @@ const gridProducts = [
   },
   {
     id: '4',
-    image: pinkImage2,
+    image: springImage2,
     name: '모이스처 크림',
     brand: '부드러운',
     rating: 4.3,

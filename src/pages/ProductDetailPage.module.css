@@ -6,6 +6,12 @@
   overflow-x: hidden;
 }
 
+.themeSelector {
+  padding: 16px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e8e8e8;
+}
+
 .detailSection {
   padding: 20px;
 }
@@ -85,8 +91,21 @@
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .detailSection {
-    padding: 16px;
-  }
+  padding: 16px;
+}
+
+.detailImageSection {
+  margin: 16px;
+  text-align: center;
+}
+
+.detailImage {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
   
   .whyChooseSection {
     padding: 16px;

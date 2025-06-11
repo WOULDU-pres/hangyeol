@@ -7,7 +7,6 @@ import { ProductCard } from '../components/ProductCard.tsx'
 import { BottomNavigation } from '../components/BottomNavigation.tsx'
 import { AIButton } from '../components/AIButton.tsx'
 import { mockProducts } from '../data/mockProducts.ts'
-import { theme } from '../styles/theme'
 import styles from './MainPage.module.css'
 import type { Product } from '../types/Product.ts'
 

@@ -2,8 +2,8 @@ import type { Product } from '../types/Product.ts'
 import forestImage1 from '../assets/forest_style_cosmetics (1).jpg'
 import forestImage2 from '../assets/forest_style_cosmetics (2).jpg'
 import forestImage3 from '../assets/forest_style_cosmetics (3).jpg'
-import pinkImage1 from '../assets/pink_style_cosmetics (1).jpg'
-import pinkImage2 from '../assets/pink_style_cosmetics (2).jpg'
+import springImage1 from '../assets/spring_style_cosmetics (1).jpg'
+import springImage2 from '../assets/spring_style_cosmetics.jpg'
 
 export const mockProducts: Product[] = [
   {
@@ -19,7 +19,7 @@ export const mockProducts: Product[] = [
     name: '자스민 바디 미스트',
     category: '바디 케어',
     price: '₩24,500',
-    image: pinkImage1,
+    image: springImage1,
     featured: false
   },
   {
@@ -36,7 +36,7 @@ export const mockProducts: Product[] = [
     name: '자연 향수',
     category: '바디 케어',
     price: '₩32,700',
-    image: pinkImage2,
+    image: springImage2,
     rating: 4.9,
     featured: true
   },
@@ -71,7 +71,7 @@ export const mockProducts: Product[] = [
     name: '비타민 C 앰플',
     category: '페이스 케어',
     price: '₩35,000',
-    image: pinkImage1,
+    image: springImage1,
     rating: 4.8,
     featured: true
   },
@@ -89,7 +89,7 @@ export const mockProducts: Product[] = [
     name: '라벤더 바디오일',
     category: '바디 케어',
     price: '₩19,900',
-    image: pinkImage2,
+    image: springImage2,
     rating: 4.9,
     featured: true
   },

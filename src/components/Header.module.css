@@ -39,6 +39,11 @@
   font-size: 16px;
 }
 
+.spacer {
+  width: 42px;
+  height: 42px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .header {

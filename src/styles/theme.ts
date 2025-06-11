@@ -29,16 +29,34 @@ export const forestTheme = {
   secondary: '#65B741',  // 밝은 녹색
   accent: '#BBD8A3',     // 연한 녹색
   background: '#F0F1C5', // 아이보리
-  warm: '#BF9264'        // 따뜻한 베이지
+  warm: '#98CD00'        // 따뜻한 베이지
 }
 
-// 쿨 테마 색상 (향후 확장용 - AI 추천 컴포넌트, 상세페이지 하단구매바 전용)
+// 쿨 테마 색상 (AI 추천 컴포넌트, 상세페이지 하단구매바 전용)
 export const coolTheme = {
   primary: '#5B8DBE',    // 시원한 블루
   secondary: '#7BB3D9',  // 연한 블루
   accent: '#A8D0F0',     // 아이스 블루
   background: '#F0F8FF', // 앨리스 블루
   highlight: '#4A90E2'   // 비비드 블루
+}
+
+// 새로운 봄 테마 색상 (벚꽃, 신록 - AI 추천 컴포넌트, 상세페이지 하단구매바 전용)
+export const newSpringTheme = {
+  primary: '#E6A8D2',    // 벚꽃 핑크
+  secondary: '#F4C2C2',  // 연한 로즈
+  accent: '#FFE4E6',     // 연한 핑크
+  background: '#FFF8F0', // 크림
+  warm: '#D4A574'        // 따뜻한 베이지
+}
+
+// 웜 테마 색상 (가을, 따뜻함 - AI 추천 컴포넌트, 상세페이지 하단구매바 전용)
+export const warmTheme = {
+  primary: '#C17817',    // 황금빛 오렌지
+  secondary: '#E6B800',  // 따뜻한 골드
+  accent: '#F4D03F',     // 연한 옐로우
+  background: '#FFF9E6', // 크림 옐로우
+  warm: '#D35400'        // 깊은 오렌지
 }
 
 export const spacing = {
@@ -78,7 +96,9 @@ export const themes = {
   default: defaultTheme,
   spring: springTheme,
   forest: forestTheme,
-  cool: coolTheme
+  cool: coolTheme,
+  newSpring: newSpringTheme,
+  warm: warmTheme
 }
 
 // 메인 테마 객체 (기본 테마를 기반으로)

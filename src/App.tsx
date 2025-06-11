@@ -7,9 +7,12 @@ import { ProductDetailPage } from './pages/ProductDetailPage.tsx'
 
 const { Content } = Layout
 
+type ThemeType = 'forest' | 'spring' | 'cool' | 'warm'
+
 function App() {
   const [currentPage, setCurrentPage] = useState<'main' | 'searchInput' | 'search' | 'productDetail'>('main')
   const [searchQuery, setSearchQuery] = useState('')
+  const [currentTheme, setCurrentTheme] = useState<ThemeType>('forest')
 
   const handleSearchInputClick = () => {
     setCurrentPage('searchInput')
@@ -22,11 +25,14 @@ function App() {
     }
   }
 
-  const handleNavigate = (route: string) => {
-    console.log('Navigate to:', route)
+  const handleNavigate = (route: string, theme?: ThemeType) => {
+    console.log('Navigate to:', route, 'Theme:', theme)
     if (route === 'home') {
       setCurrentPage('main')
     } else if (route === 'productDetail') {
+      if (theme) {
+        setCurrentTheme(theme)
+      }
       setCurrentPage('productDetail')
     }
     // TODO: Handle other navigation routes
@@ -81,6 +87,7 @@ function App() {
         {currentPage === 'productDetail' && (
           <ProductDetailPage 
             onBack={handleBackFromDetail}
+            initialTheme={currentTheme}
           />
         )}
       </Content>

@@ -2,8 +2,8 @@ import type { FilterType, OrderUpdate, RecentlyViewedItem, BrandItem } from '../
 import forestImage1 from '../assets/forest_style_cosmetics (1).jpg'
 import forestImage2 from '../assets/forest_style_cosmetics (2).jpg'
 import forestImage3 from '../assets/forest_style_cosmetics (3).jpg'
-import pinkImage1 from '../assets/pink_style_cosmetics (1).jpg'
-import pinkImage2 from '../assets/pink_style_cosmetics (2).jpg'
+import springImage1 from '../assets/spring_style_cosmetics (1).jpg'
+import springImage2 from '../assets/spring_style_cosmetics.jpg'
 
 export const filterButtons: FilterType[] = [
   { id: 'stores', label: '매장', active: false },
@@ -25,7 +25,7 @@ export const orderUpdates: OrderUpdate[] = [
     status: '주문 완료',
     shipping: '일반 배송',
     image: forestImage1,
-    logo: pinkImage1
+    logo: springImage1
   }
 ]
 
@@ -41,7 +41,7 @@ export const recentlyViewed: RecentlyViewedItem[] = [
     id: '2',
     type: 'product',
     name: '수분 케어 제품',
-    image: pinkImage2
+    image: springImage2
   },
   {
     id: '3',
@@ -67,6 +67,6 @@ export const discoverBrands: BrandItem[] = [
     rating: 4.6,
     reviewCount: 2584,
     description: '순수 자연 성분 스킨케어',
-    image: pinkImage1
+    image: springImage1
   }
 ] 

@@ -22,16 +22,78 @@ import type { AIRecommendedProduct } from '../types/Product'
 import { getAIRecommendation, getDefaultRecommendation } from '../services/agentforceApi'
 import { shouldShowDefaultRecommendation } from '../utils/devConfig'
 
+// 테마별 키워드 매핑
+const themeKeywords = {
+  forest: ['자연친화', '천연', '숲', '나무', '허브', '유기농', '친환경', '바이오'],
+  spring: ['봄', '꽃', '벚꽃', '장미', '향기', '로맨틱', '핑크', '달콤한'],
+  cool: ['시원한', '쿨링', '민트', '상쾌한', '청량', '얼음', '알로에', '시원'],
+  warm: ['따뜻한', '포근한', '웜', '가을', '오렌지', '골드', '버터', '카카오']
+}
+
+// 테마별 제품 데이터
+const themeProducts = {
+  forest: {
+    id: 'forest-product',
+    name: '참나무 바디 밤',
+    brand: '수풀',
+    price: '₩49,000',
+    image: '/src/assets/forest_style_cosmetics (3).jpg',
+    tags: ['자연친화', '유기농', '보습'],
+    description: '자연에서 온 참나무 추출물과 히알루론산이 만나 깊은 보습 효과를 선사합니다.'
+  },
+  spring: {
+    id: 'spring-product',
+    name: '벚꽃 블라썸 크림',
+    brand: '꽃내음',
+    price: '₩42,000',
+    image: '/src/assets/spring_style_cosmetics (1).jpg',
+    tags: ['꽃향기', '로맨틱', '촉촉함'],
+    description: '벚꽃 추출물과 히알루론산이 만나 촉촉하고 부드러운 피부를 선사합니다.'
+  },
+  cool: {
+    id: 'cool-product',
+    name: '아이스 쿨링 젤',
+    brand: '청량',
+    price: '₩35,000',
+    image: '/src/assets/cool_style_cosmetics.png',
+    tags: ['시원함', '쿨링', '진정'],
+    description: '시원한 민트와 알로에가 만나 화끈거리는 피부를 진정시켜줍니다.'
+  },
+  warm: {
+    id: 'warm-product',
+    name: '카카오 버터 밤',
+    brand: '따스함',
+    price: '₩55,000',
+    image: '/src/assets/warm_style_cosmetics.png',
+    tags: ['포근함', '영양', '따뜻함'],
+    description: '에콰도르 카카오 버터와 시어버터가 만나 따뜻한 보습감을 선사합니다.'
+  }
+}
+
+// 검색어에서 테마 감지
+const detectThemeFromQuery = (query: string): keyof typeof themeKeywords | null => {
+  const lowerQuery = query.toLowerCase()
+  
+  for (const [theme, keywords] of Object.entries(themeKeywords)) {
+    if (keywords.some(keyword => lowerQuery.includes(keyword))) {
+      return theme as keyof typeof themeKeywords
+    }
+  }
+  
+  return null
+}
+
 interface SearchResultsPageProps {
   searchQuery?: string
   onBack?: () => void
-  onNavigate?: (route: string) => void
+  onNavigate?: (route: string, theme?: keyof typeof themeKeywords) => void
 }
 
 export function SearchResultsPage({ searchQuery = 'Search', onBack, onNavigate }: SearchResultsPageProps) {
   const [activeFilters, setActiveFilters] = useState<string[]>([])
   const [currentQuery, setCurrentQuery] = useState(searchQuery)
   const [showProductGrid, setShowProductGrid] = useState(false)
+  const [currentTheme, setCurrentTheme] = useState<keyof typeof themeKeywords>('forest')
   
   // AI 추천 상품 관련 상태
   const [aiRecommendation, setAiRecommendation] = useState<AIRecommendedProduct | null>(null)
@@ -82,12 +144,24 @@ export function SearchResultsPage({ searchQuery = 'Search', onBack, onNavigate }
     setShowAiRecommendation(true)
     
     try {
-      const response = await getAIRecommendation(query)
+      // 검색어에서 테마 감지
+      const detectedTheme = detectThemeFromQuery(query)
       
-      if (response.success && response.data) {
-        setAiRecommendation(response.data)
+      if (detectedTheme && themeProducts[detectedTheme]) {
+        // 테마 설정
+        setCurrentTheme(detectedTheme)
+        // 테마별 제품 반환
+        const themeProduct = themeProducts[detectedTheme]
+        setAiRecommendation(themeProduct as AIRecommendedProduct)
       } else {
-        setAiError(response.error || 'AI 추천을 불러올 수 없습니다.')
+        // 기본 API 호출
+        const response = await getAIRecommendation(query)
+        
+        if (response.success && response.data) {
+          setAiRecommendation(response.data)
+        } else {
+          setAiError(response.error || 'AI 추천을 불러올 수 없습니다.')
+        }
       }
     } catch (error) {
       setAiError('네트워크 오류가 발생했습니다.')
@@ -103,15 +177,18 @@ export function SearchResultsPage({ searchQuery = 'Search', onBack, onNavigate }
 
   const handleAIProductClick = (productId: string) => {
     console.log('AI recommended product clicked:', productId)
-    // AI 추천 상품 클릭 시 추가 로직 (필요시)
+    // AI 추천 상품 클릭 시 테마와 함께 상세페이지로 이동
+    if (onNavigate) {
+      onNavigate('productDetail', currentTheme)
+    }
   }
 
-  const handleNavigate = (route: string) => {
+  const handleNavigate = (route: string, theme?: keyof typeof themeKeywords) => {
     console.log('Navigate to:', route)
     if (route === 'home' && onBack) {
       onBack()
     } else if (onNavigate) {
-      onNavigate(route)
+      onNavigate(route, theme)
     }
   }
 
@@ -151,6 +228,7 @@ export function SearchResultsPage({ searchQuery = 'Search', onBack, onNavigate }
           error={aiError}
           onProductClick={handleAIProductClick}
           onNavigate={handleNavigate}
+          themeType={currentTheme}
         />
       )}
 

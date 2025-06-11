@@ -31,7 +31,7 @@ export async function getAIRecommendation(searchQuery: string): Promise<Agentfor
       image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=300&fit=crop&crop=center',
       tags: ['#AI추천', '#맞춤형', '#인기상품'],
       description: `${searchQuery} 검색에 기반한 AI 맞춤 추천 상품입니다. 사용자의 취향과 트렌드를 분석하여 선별했습니다.`,
-      price: Math.floor(Math.random() * 100000) + 10000,
+      price: (Math.floor(Math.random() * 100000) + 10000).toString(),
       brand: 'AI Select'
     }
 
@@ -56,7 +56,7 @@ export function getDefaultRecommendation(): AgentforceApiResponse {
   if (shouldShowDefaultRecommendation()) {
     return {
       success: true,
-      data: DEV_CONFIG.DEFAULT_AI_RECOMMENDATION as AIRecommendedProduct
+      data: DEV_CONFIG.DEFAULT_AI_RECOMMENDATION as unknown as AIRecommendedProduct
     }
   }
   
