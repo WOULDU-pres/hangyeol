@@ -21,52 +21,37 @@ import type { FilterType } from '../types/SearchTypes'
 import type { AIRecommendedProduct } from '../types/Product'
 import { getAIRecommendation, getDefaultRecommendation } from '../services/agentforceApi'
 import { shouldShowDefaultRecommendation } from '../utils/devConfig'
+import { themeProducts as sharedThemeProducts } from '../data/themeProducts'
 
 // 테마별 키워드 매핑
 const themeKeywords = {
-  forest: ['자연친화', '천연', '숲', '나무', '허브', '유기농', '친환경', '바이오'],
-  spring: ['봄', '꽃', '벚꽃', '장미', '향기', '로맨틱', '핑크', '달콤한'],
-  cool: ['시원한', '쿨링', '민트', '상쾌한', '청량', '얼음', '알로에', '시원'],
-  warm: ['따뜻한', '포근한', '웜', '가을', '오렌지', '골드', '버터', '카카오']
+  forest: ['자연친화', '천연', '숲', '나무', '허브', '유기농', '친환경', '바이오', '자연', '자연적인'],
+  spring: ['봄', '꽃', '벚꽃', '장미', '향기', '로맨틱', '핑크', '달콤한', '산뜻한'],
+  cool: ['시원한', '쿨링', '민트', '상쾌한', '청량', '얼음', '알로에', '시원', '청아한'],
+  warm: ['따뜻한', '포근한', '웜', '가을', '오렌지', '골드', '버터', '카카오', '따듯한']
 }
 
-// 테마별 제품 데이터
+// 테마별 제품 데이터 (공통 데이터에 id와 image 필드 추가)
 const themeProducts = {
   forest: {
     id: 'forest-product',
-    name: '참나무 바디 밤',
-    brand: '수풀',
-    price: '₩49,000',
-    image: '/src/assets/forest_style_cosmetics (3).jpg',
-    tags: ['자연친화', '유기농', '보습'],
-    description: '자연에서 온 참나무 추출물과 히알루론산이 만나 깊은 보습 효과를 선사합니다.'
+    ...sharedThemeProducts.forest,
+    image: '/src/assets/forest_style_cosmetics (3).jpg'
   },
   spring: {
     id: 'spring-product',
-    name: '벚꽃 블라썸 크림',
-    brand: '꽃내음',
-    price: '₩42,000',
-    image: '/src/assets/spring_style_cosmetics (1).jpg',
-    tags: ['꽃향기', '로맨틱', '촉촉함'],
-    description: '벚꽃 추출물과 히알루론산이 만나 촉촉하고 부드러운 피부를 선사합니다.'
+    ...sharedThemeProducts.spring,
+    image: '/src/assets/spring_style_cosmetics (1).jpg'
   },
   cool: {
     id: 'cool-product',
-    name: '아이스 쿨링 젤',
-    brand: '청량',
-    price: '₩35,000',
-    image: '/src/assets/cool_style_cosmetics.png',
-    tags: ['시원함', '쿨링', '진정'],
-    description: '시원한 민트와 알로에가 만나 화끈거리는 피부를 진정시켜줍니다.'
+    ...sharedThemeProducts.cool,
+    image: '/src/assets/cool_style_cosmetics.png'
   },
   warm: {
     id: 'warm-product',
-    name: '카카오 버터 밤',
-    brand: '따스함',
-    price: '₩55,000',
-    image: '/src/assets/warm_style_cosmetics.png',
-    tags: ['포근함', '영양', '따뜻함'],
-    description: '에콰도르 카카오 버터와 시어버터가 만나 따뜻한 보습감을 선사합니다.'
+    ...sharedThemeProducts.warm,
+    image: '/src/assets/warm_style_cosmetics.png'
   }
 }
 
@@ -148,6 +133,9 @@ export function SearchResultsPage({ searchQuery = 'Search', onBack, onNavigate }
       const detectedTheme = detectThemeFromQuery(query)
       
       if (detectedTheme && themeProducts[detectedTheme]) {
+        // 테마가 감지된 경우에도 동일한 딜레이 적용 (1초)
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        
         // 테마 설정
         setCurrentTheme(detectedTheme)
         // 테마별 제품 반환

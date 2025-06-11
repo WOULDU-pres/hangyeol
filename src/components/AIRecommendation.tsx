@@ -5,6 +5,7 @@ import { FaRegSmileWink } from 'react-icons/fa'
 import type { AIRecommendedProduct } from '../types/Product'
 import { generateClickMessage } from '../services/agentforceApi'
 import { theme, forestTheme, newSpringTheme, coolTheme, warmTheme } from '../styles/theme'
+import { themeProducts, type ThemeType as ImportedThemeType } from '../data/themeProducts'
 import styles from './AIRecommendation.module.css'
 import forestImage from '../assets/forest_style_cosmetics (2).jpg'
 import springImage from '../assets/spring_style_cosmetics (1).jpg'
@@ -95,37 +96,31 @@ const getThemeMessageTextColor = (themeType: ThemeType) => {
   }
 }
 
-// 브랜드별 문구 바리에이션
+// 브랜드별 문구 바리에이션 (브랜드명만 포함)
 const brandMessages = {
   '수풀': [
     '혹시 "수풀" 들어보셨나요?',
-    '혹시 "참나무 바디 밤" 아시나요?',
-    '자연의 향기 "수풀" 어떠세요?'
+    '자연의 향기 "수풀" 어떠세요?',
+    '"수풀"과 함께 자연을 느껴보세요'
   ],
   '꽃내음': [
     '혹시 "꽃내음" 들어보셨나요?',
-    '혹시 "벚꽃 블라썸 크림" 아시나요?',
-    '봄의 향기 "꽃내음" 어떠세요?'
+    '봄의 향기 "꽃내음" 어떠세요?',
+    '"꽃내음"과 함께 봄을 만나보세요'
   ],
   '청량': [
     '혹시 "청량" 들어보셨나요?',
-    '혹시 "아이스 쿨링 젤" 아시나요?',
-    '시원한 감촉 "청량" 어떠세요?'
+    '시원한 감촉 "청량" 어떠세요?',
+    '"청량"과 함께 시원함을 느껴보세요'
   ],
-  '따스함': [
-    '혹시 "따스함" 들어보셨나요?',
-    '혹시 "카카오 버터 밤" 아시나요?',
-    '포근한 온기 "따스함" 어떠세요?'
+  '온화': [
+    '혹시 "온화" 들어보셨나요?',
+    '포근한 온기 "온화" 어떠세요?',
+    '"온화"와 함께 따뜻함을 느껴보세요'
   ]
 }
 
-// 브랜드별 클릭 메시지
-const brandClickMessages = {
-  '수풀': '청아한 지원님에게 숲의 향기를 가득담은 "참나무 바디 밤"이 잘 어울릴 것 같아요.',
-  '꽃내음': '우아한 지원님에게 봄꽃의 향기를 담은 "벚꽃 블라썸 크림"이 잘 어울릴 것 같아요.',
-  '청량': '활기찬 지원님에게 시원한 민트의 향기를 담은 "아이스 쿨링 젤"이 잘 어울릴 것 같아요.',
-  '따스함': '포근한 지원님에게 따뜻한 카카오의 향기를 담은 "카카오 버터 밤"이 잘 어울릴 것 같아요.'
-}
+// 테마별 제품 데이터는 ../data/themeProducts.ts에서 import
 
 // 랜덤 브랜드 메시지 선택 함수
 const getRandomBrandMessage = (brand?: string): string => {
@@ -136,12 +131,9 @@ const getRandomBrandMessage = (brand?: string): string => {
   return '혹시 이런 제품은 어떠세요?'
 }
 
-// 브랜드별 클릭 메시지 선택 함수
-const getBrandClickMessage = (brand?: string): string => {
-  if (brand && brandClickMessages[brand as keyof typeof brandClickMessages]) {
-    return brandClickMessages[brand as keyof typeof brandClickMessages]
-  }
-  return '청아한 지원님에게 이 제품이 잘 어울릴 것 같아요.'
+// 테마별 클릭 메시지 선택 함수
+const getThemeClickMessage = (themeType: ThemeType): string => {
+  return themeProducts[themeType].clickMessage
 }
 
 interface AIRecommendationProps {
@@ -257,7 +249,7 @@ export function AIRecommendation({
           className={styles.title}
           style={{ color: getThemeHighlightColor(themeType) }}
         >
-          {formatMessage(getRandomBrandMessage(product.brand), themeType)}
+          {formatMessage(getRandomBrandMessage(themeProducts[themeType].brand), themeType)}
         </Title>
       </div>
 
@@ -276,7 +268,7 @@ export function AIRecommendation({
             className={styles.clickMessageText}
             style={{ color: getThemeMessageTextColor(themeType) }}
           >
-            {formatMessage(getBrandClickMessage(product.brand), themeType)}
+            {formatMessage(getThemeClickMessage(themeType), themeType)}
           </Text>
         </div>
       </div>
@@ -298,7 +290,7 @@ export function AIRecommendation({
           <div className={styles.productImage}>
             <img 
               src={themeImages[themeType]}
-              alt="참나무 바디 밤"
+              alt={themeProducts[themeType].name}
               className={styles.productImageImg}
               style={{ 
                 border: `2px solid ${getThemeCardBorderColor(themeType)}`,
@@ -315,7 +307,7 @@ export function AIRecommendation({
               className={styles.productName}
               style={{ color: getThemeHighlightColor(themeType) }}
             >
-              참나무 바디 밤
+              {themeProducts[themeType].name}
             </Title>
 
             {/* 리뷰 / 구매수 */}
@@ -326,13 +318,13 @@ export function AIRecommendation({
                 className={styles.ratingScore}
                 style={{ color: getThemeHighlightColor(themeType) }}
               >
-                4.6
+                {themeProducts[themeType].rating}
               </Text>
               <Text 
                 className={styles.ratingCount}
                 style={{ color: getThemeHighlightColor(themeType) }}
               >
-                / 2,500+
+                / {themeProducts[themeType].reviewCount}
               </Text>
             </div>
 
@@ -342,7 +334,7 @@ export function AIRecommendation({
               className={styles.productPrice}
               style={{ color: theme.secondary }}
             >
-              ₩49,000
+              {themeProducts[themeType].price}
             </Text>
 
             {/* 주요 성분 */}
@@ -357,7 +349,7 @@ export function AIRecommendation({
                 className={styles.ingredientsList}
                 style={{ color: getThemeCardBorderColor(themeType) }}
               >
-                히알루론산, 세라마이드, 레티놀
+                {themeProducts[themeType].ingredients}
               </Text>
             </div>
           </div>

@@ -18,7 +18,7 @@ import { DEV_CONFIG, shouldShowDefaultRecommendation } from '../utils/devConfig'
 export async function getAIRecommendation(searchQuery: string): Promise<AgentforceApiResponse> {
   try {
     // 1초 응답 시간을 시뮬레이션하기 위한 딜레이
-    await new Promise(resolve => setTimeout(resolve, 800))
+    await new Promise(resolve => setTimeout(resolve, 1000))
     
     // TODO: 실제 API 호출로 교체 예정
     // const response = await fetch(`${AGENTFORCE_API_URL}?query=${encodeURIComponent(searchQuery)}`)

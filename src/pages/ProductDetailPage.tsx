@@ -9,8 +9,12 @@ import { AIAnalysis } from '../components/AIAnalysis'
 import { useState } from 'react'
 import { BottomPurchaseBar } from '../components/BottomPurchaseBar'
 import { theme, forestTheme, newSpringTheme, coolTheme, warmTheme } from '../styles/theme'
+import { themeProducts, type ThemeType } from '../data/themeProducts'
 import styles from './ProductDetailPage.module.css'
 import forestImage from '../assets/forest_style_cosmetics (3).jpg'
+import springImage from '../assets/spring_style_cosmetics (1).jpg'
+import coolImage from '../assets/cool_style_cosmetics.png'
+import warmImage from '../assets/warm_style_cosmetics.png'
 import cosmeticDetailImage from '../assets/cosmetic_detail_page.png'
 
 // const { Title, Text } = Typography
@@ -20,13 +24,19 @@ interface ProductDetailPageProps {
   initialTheme?: ThemeType
 }
 
-type ThemeType = 'forest' | 'spring' | 'cool' | 'warm'
-
 const themeBackgrounds = {
   forest: forestTheme.background,
   spring: newSpringTheme.background,
   cool: coolTheme.background,
   warm: warmTheme.background
+}
+
+// 테마별 이미지 매핑
+const themeImages = {
+  forest: forestImage,
+  spring: springImage,
+  cool: coolImage,
+  warm: warmImage
 }
 
 // RelatedProducts 컴포넌트에서 내부 데이터를 사용하므로 mockRelatedProducts 제거
@@ -51,8 +61,11 @@ export function ProductDetailPage({ onBack, initialTheme = 'forest' }: ProductDe
     forest: '수풀 (숲)',
     spring: '꽃내음 (봄)',
     cool: '청량 (쿨)',
-    warm: '따스함 (웜)'
+    warm: '온화 (웜)'
   }
+
+  // 현재 선택된 테마의 제품 데이터
+  const currentProduct = themeProducts[selectedTheme]
 
   return (
     <div 
@@ -86,18 +99,18 @@ export function ProductDetailPage({ onBack, initialTheme = 'forest' }: ProductDe
       </div>
 
       <ProductImage 
-        imageUrl={forestImage}
-        alt="참나무 바디 밤"
+        imageUrl={themeImages[selectedTheme]}
+        alt={currentProduct.name}
       />
 
       <ProductInfo
-        brand="수풀"
-        name="참나무 바디 밤"
-        rating={4.6}
-        reviewCount={2500}
+        brand={currentProduct.brand}
+        name={currentProduct.name}
+        rating={parseFloat(currentProduct.rating)}
+        reviewCount={parseInt(currentProduct.reviewCount.replace(/[^\d]/g, ''))}
         saleCount={1200}
-        price="₩49,000"
-        description="자연에서 온 참나무 추출물과 히알루론산, 세라마이드가 만나 깊은 보습과 피부 장벽 강화 효과를 선사하는 바디 로션입니다. 건성 피부에 특히 효과적입니다."
+        price={currentProduct.price}
+        description={currentProduct.description}
         themeType={selectedTheme}
       />
 
@@ -122,7 +135,11 @@ export function ProductDetailPage({ onBack, initialTheme = 'forest' }: ProductDe
         />
       </div>
 
-      <BottomPurchaseBar themeType={selectedTheme} />
+      <BottomPurchaseBar 
+        themeType={selectedTheme}
+        price={currentProduct.price}
+        onGoHome={onBack}
+      />
     </div>
   )
 } 

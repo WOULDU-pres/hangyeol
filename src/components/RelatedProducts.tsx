@@ -126,7 +126,7 @@ const themeProductsData = {
     {
       id: 'w1',
       name: '카카오 버터 밤',
-      brand: '따스함',
+      brand: '온화',
       price: '₩55,000',
       image: warmImage,
       rating: 4.9,
